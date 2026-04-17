@@ -1,7 +1,14 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.css$/,  // Aplica la regla para archivos CSS
+      use: ['style-loader', 'css-loader'],  // Carga el CSS
+    });
+    return config;
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
